@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Denied</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>Post Listener</h1>
+    <form id="postForm">
+        <label for="postData">Enter data:</label><br>
+        <textarea id="postData" rows="4"></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('postForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const postData = document.getElementById('postData').value;
+            const secretKey = 'Bsol==';
+            
+            if (postData.includes(secretKey)) {
+                document.getElementById('result').textContent = 'Secret key detected!';
+            } else {
+                document.getElementById('result').textContent = 'No secret key detected.';
+            }
+        });
+    </script>
+</body>
+</html>
