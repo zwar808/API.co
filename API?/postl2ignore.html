@@ -3,35 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POST Request Checker</title>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        async function checkPostRequest() {
-            const url = 'https://example.com/api/check';
-            const postData = { key: 'BsolaraV4_freepalestinenigga' };
-
-            try {
-                const response = await axios.post(url, postData);
-
-                const responseText = response.data; 
-
-                const isMatch = responseText.includes('BsolaraV4_freepalestinenigga');
-
-                if (isMatch) {
-                    document.getElementById('result').innerText = 'True';
-                } else {
-                    document.getElementById('result').innerText = 'False';
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('result').innerText = 'Error';
-            }
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
         }
-    </script>
+        #dvdText {
+            position: absolute;
+            font-family: 'Futura', sans-serif;
+            font-weight: bold;
+            font-style: italic;
+            color: white;
+            font-size: 36px;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>POST Request Checker</h1>
-    <button onclick="checkPostRequest()">Check POST Request</button>
-    <p id="result"></p>
+    <div id="dvdText">api.co</div>
+    <script>
+        const dvdText = document.getElementById('dvdText');
+        const textWidth = dvdText.offsetWidth;
+        const textHeight = dvdText.offsetHeight;
+
+        let x = Math.random() * (window.innerWidth - textWidth);
+        let y = Math.random() * (window.innerHeight - textHeight);
+        let dx = 2;
+        let dy = 2;
+
+        function animate() {
+            x += dx;
+            y += dy;
+
+            if (x <= 0 || x + textWidth >= window.innerWidth) dx *= -1;
+            if (y <= 0 || y + textHeight >= window.innerHeight) dy *= -1;
+
+            dvdText.style.left = x + 'px';
+            dvdText.style.top = y + 'px';
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 </body>
 </html>
