@@ -3,41 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auth Denied</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
+    <title>POST Request Checker</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        async function checkPostRequest() {
+            const url = 'https://example.com/api/check'; // Replace with your endpoint
+            const postData = { key: 'BsolaraV4_freepalestinenigga' }; // Data to send in POST request
+
+            try {
+                const response = await axios.post(url, postData);
+
+                // Assuming the response is a string, adjust if needed based on your API
+                const responseText = response.data; 
+
+                const isMatch = responseText.includes('BsolaraV4_freepalestinenigga');
+
+                if (isMatch) {
+                    document.getElementById('result').innerText = 'True';
+                } else {
+                    document.getElementById('result').innerText = 'False';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = 'Error';
+            }
         }
-        textarea {
-            width: 100%;
-            box-sizing: border-box;
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <h1>Post Listener</h1>
-    <form id="postForm">
-        <label for="postData">Enter data:</label><br>
-        <textarea id="postData" rows="4"></textarea><br>
-        <button type="submit">Submit</button>
-    </form>
+    <h1>POST Request Checker</h1>
+    <button onclick="checkPostRequest()">Check POST Request</button>
     <p id="result"></p>
-
-    <script>
-        document.getElementById('postForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            const postData = document.getElementById('postData').value;
-            const secretKey = 'Bsol==';
-            
-            if (postData.includes(secretKey)) {
-                document.getElementById('result').textContent = 'Secret key detected!';
-            } else {
-                document.getElementById('result').textContent = 'No secret key detected.';
-            }
-        });
-    </script>
 </body>
 </html>
