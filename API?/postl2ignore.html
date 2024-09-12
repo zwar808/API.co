@@ -7,13 +7,12 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         async function checkPostRequest() {
-            const url = 'https://example.com/api/check'; // Replace with your endpoint
-            const postData = { key: 'BsolaraV4_freepalestinenigga' }; // Data to send in POST request
+            const url = 'https://example.com/api/check';
+            const postData = { key: 'BsolaraV4_freepalestinenigga' };
 
             try {
                 const response = await axios.post(url, postData);
 
-                // Assuming the response is a string, adjust if needed based on your API
                 const responseText = response.data; 
 
                 const isMatch = responseText.includes('BsolaraV4_freepalestinenigga');
