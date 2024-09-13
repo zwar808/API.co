@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Carbon Team</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #121212; color: #fff; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { width: 400px; background-color: #1e1e1e; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); text-align: center; }
+        .logo h1 { font-size: 2rem; color: #00ffcc; }
+        h2 { margin-bottom: 15px; color: #00ffcc; }
+        p { margin-bottom: 20px; }
+        input, textarea { width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: none; background-color: #333; color: #fff; }
+        input::placeholder, textarea::placeholder { color: #bbb; }
+        .join-btn { width: 100%; padding: 12px; background-color: #00ffcc; color: #121212; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: background-color 0.3s; }
+        .join-btn:hover { background-color: #00cca3; }
+        .footer { margin-top: 20px; color: #777; }
+        .footer p { font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>Carbon Team</h1>
+        </div>
+        <div class="content">
+            <h2>Join Our Team</h2>
+            <p>We’re looking for talented individuals to take part in our journey. Want to join the Carbon Team? Fill out the form below!</p>
+            <form id="joinForm">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" placeholder="Why do you want to join?" rows="5" required></textarea>
+                <button type="submit" class="join-btn">Join the Team</button>
+            </form>
+        </div>
+        <div class="footer">
+            <p>Carbon Team © 2024</p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('joinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const formData = { name, email, message, timestamp: new Date().toISOString() };
+            let submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+            submissions.push(formData);
+            localStorage.setItem('submissions', JSON.stringify(submissions));
+
+            alert(`Thanks for your submission, ${name}! We’ll review your request soon.`);
+            document.getElementById('joinForm').reset();
+        });
+    </script>
+</body>
+</html>
