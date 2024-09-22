@@ -1,6 +1,7 @@
 local include = {}
 local RstateUndefined = {}
-function rstate(type)
+local Main = {}
+function Main:rstate(type)
     if type == nil or type == "" then
         _G.Rstate = nil
         table.insert(RstateUndefined, type)
@@ -21,3 +22,5 @@ function rstate(type)
     table.insert(include, type)
   
 end
+
+return Main
